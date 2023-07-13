@@ -1,7 +1,7 @@
 require './lib/player'
 
 class Team 
-    attr_reader  :team_name,
+    attr_accessor  :team_name,
                  :location,
                  :roster
 
@@ -17,5 +17,29 @@ class Team
 
     def add_player(player)
         @roster.push(player)
+    end
+
+    def long_term_players
+        @roster.select do |player|
+            player.contract_length > 24
+        end
+    end
+
+    def short_term_players
+        @roster.select do |player|
+            player.contract_length <= 24
+        end
+    end
+
+    def value
+        value = 0
+            roster.each do |player|
+            value += player.monthly_cost * player.contract_length
+            end
+            value
+    end
+
+    def details
+        {"total_value" => value,  "player_count" => player_count}
     end
 end
