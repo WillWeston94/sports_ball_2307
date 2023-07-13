@@ -1,5 +1,5 @@
 class Player
-    attr_reader :first_name,
+    attr_accessor :first_name,
                 :last_name,
                 :monthly_cost,
                 :contract_length,
@@ -13,16 +13,15 @@ class Player
         @nickname = nickname
     end
 
+    # split method to an array based on whtiespace
+    # will take first 
     def first_name
-        if @name.split.count > 1
           @name.split.first
-        end
     end
-
+    # split method to an array based on whtiespace
+    # will take last
     def last_name
-        if @name.split.count > 1
             @name.split.last
-        end
     end
 
     def total_cost
